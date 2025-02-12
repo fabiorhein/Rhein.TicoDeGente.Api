@@ -1,10 +1,10 @@
-﻿using Rhein.TicoDeGente.Domain.Entities.Customers;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
+using Rhein.TicoDeGente.Domain.Entities.Customers;
 
 namespace Rhein.TicoDeGente.Domain.Entities.Orders;
 
-public class Order
+public class Order : EntityBase
 {
-    public Ulid Id { get; set; }
     public Customer Customer { get; set; }
     public List<OrderItem> Items { get; set; }
     public DateTime OrderDate { get; set; }
