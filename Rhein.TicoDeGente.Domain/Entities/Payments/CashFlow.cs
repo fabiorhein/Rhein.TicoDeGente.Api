@@ -1,8 +1,9 @@
-﻿namespace Rhein.TicoDeGente.Domain.Entities.Payments;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
 
-public class CashFlow
+namespace Rhein.TicoDeGente.Domain.Entities.Payments;
+
+public class CashFlow : EntityBase
 {
-    public Ulid Id { get; set; }
     public decimal Income { get; set; }
     public decimal Expense { get; set; }
     public DateTime Date { get; set; }

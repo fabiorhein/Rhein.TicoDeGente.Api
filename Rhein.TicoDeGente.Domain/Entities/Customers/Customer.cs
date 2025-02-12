@@ -1,13 +1,12 @@
-﻿using System.Net;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
+using System.Net;
 
 namespace Rhein.TicoDeGente.Domain.Entities.Customers;
 
-public class Customer
+public class Customer : EntityBase
 {
-    public Ulid Id { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
     public string Phone { get; set; }
     public Address Address { get; set; }
-    public DateTime RegisteredAt { get; set; }
 }

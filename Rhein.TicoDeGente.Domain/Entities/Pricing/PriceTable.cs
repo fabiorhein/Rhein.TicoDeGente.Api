@@ -1,8 +1,9 @@
-﻿namespace Rhein.TicoDeGente.Domain.Entities.Pricing;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
 
-public class PriceTable
+namespace Rhein.TicoDeGente.Domain.Entities.Pricing;
+
+public class PriceTable : EntityBase
 {
-    public Ulid Id { get; set; }
     public string Name { get; set; }
     public DateTime ValidFrom { get; set; }
     public List<Price> Prices { get; set; }
