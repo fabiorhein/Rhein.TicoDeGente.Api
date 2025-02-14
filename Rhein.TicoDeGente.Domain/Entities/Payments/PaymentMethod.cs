@@ -1,6 +1,17 @@
-﻿namespace Rhein.TicoDeGente.Domain.Entities.Payments;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
 
-public class PaymentMethod
+namespace Rhein.TicoDeGente.Domain.Entities.Payments;
+
+public class PaymentMethod : EntityBase
 {
-    public string Type { get; set; } // e.g., Credit, Debit, Boleto
+    public enum PaymentType
+    {
+        Credit,
+        Debit,
+        Boleto,
+        // ... outros tipos
+    }
+
+    public PaymentType Type { get; set; }
 }
+
