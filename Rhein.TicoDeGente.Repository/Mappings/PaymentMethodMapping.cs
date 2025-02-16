@@ -4,7 +4,7 @@ using Rhein.TicoDeGente.Domain.Entities.Payments;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-class PaymentMethodMapping : IEntityTypeConfiguration<PaymentMethod>
+public class PaymentMethodMapping : IEntityTypeConfiguration<PaymentMethod>
 {
     public void Configure(EntityTypeBuilder<PaymentMethod> builder)
     {

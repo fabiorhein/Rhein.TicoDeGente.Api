@@ -4,11 +4,11 @@ using Rhein.TicoDeGente.Domain.Entities.Products;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-public class ColorMapping : IEntityTypeConfiguration<Color>
+public class CategoryMapping : IEntityTypeConfiguration<Category>
 {
-    public void Configure(EntityTypeBuilder<Color> builder)
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
         builder.HasKey(c => c.Id);
-        builder.HasIndex(c => c.ColorName).IsUnique();
+        builder.HasIndex(c => c.Name).IsUnique();
     }
 }

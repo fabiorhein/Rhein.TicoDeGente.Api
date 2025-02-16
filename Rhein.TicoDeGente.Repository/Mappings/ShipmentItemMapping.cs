@@ -4,7 +4,7 @@ using Rhein.TicoDeGente.Domain.Entities.Invoices;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-class ShipmentItemMapping : IEntityTypeConfiguration<ShipmentItem>
+public class ShipmentItemMapping : IEntityTypeConfiguration<ShipmentItem>
 {
     public void Configure(EntityTypeBuilder<ShipmentItem> builder)
     {

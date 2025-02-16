@@ -4,7 +4,7 @@ using Rhein.TicoDeGente.Domain.Entities.Products;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-class ProductMapping : IEntityTypeConfiguration<Product>
+public class ProductMapping : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {

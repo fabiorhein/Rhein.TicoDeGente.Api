@@ -4,7 +4,7 @@ using Rhein.TicoDeGente.Domain.Entities.Pricing;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-class PriceTableMapping : IEntityTypeConfiguration<PriceTable>
+public class PriceTableMapping : IEntityTypeConfiguration<PriceTable>
 {
     public void Configure(EntityTypeBuilder<PriceTable> builder)
     {

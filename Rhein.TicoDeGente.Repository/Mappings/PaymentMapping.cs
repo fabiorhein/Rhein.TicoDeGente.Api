@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rhein.TicoDeGente.Domain.Entities.Payments;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-class PaymentMapping
+public class PaymentMapping : IEntityTypeConfiguration<Payment>
 {
     public void Configure(EntityTypeBuilder<Payment> builder)
     {
