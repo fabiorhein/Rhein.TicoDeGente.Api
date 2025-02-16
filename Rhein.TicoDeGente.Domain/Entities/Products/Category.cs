@@ -1,6 +1,8 @@
-﻿namespace Rhein.TicoDeGente.Domain.Entities.Products;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
 
-public class Category
+namespace Rhein.TicoDeGente.Domain.Entities.Products;
+
+public class Category : EntityBase
 {
     public string Name { get; set; }
 }
