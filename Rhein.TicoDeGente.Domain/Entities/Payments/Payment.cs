@@ -8,13 +8,13 @@ namespace Rhein.TicoDeGente.Domain.Entities.Payments;
 public class Payment : EntityBase
 {
     public Order Order { get; set; }
-    public Ulid OrderId { get; set; }
+    public Guid OrderId { get; set; }
     public Invoice? Invoice { get; set; }
     public Guid? InvoiceId { get; set; }
     public Customer Customer { get; set; }
-    public Ulid CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
     public decimal AmountPaid { get; set; }
     public DateTime PaymentDate { get; set; }
     public PaymentMethod PaymentMethod { get; set; }
-    public Ulid PaymentMethodId { get; set; }
+    public Guid PaymentMethodId { get; set; }
 }

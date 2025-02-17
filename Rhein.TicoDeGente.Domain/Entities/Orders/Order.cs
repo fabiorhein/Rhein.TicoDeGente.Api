@@ -10,7 +10,7 @@ public class Order : EntityBase
     public DateTime OrderDate { get; set; }
     public string Status { get; set; }
     public Customer Customer { get; set; }
-    public Ulid CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     public Order()
     {
