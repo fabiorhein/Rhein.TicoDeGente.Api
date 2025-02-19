@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rhein.TicoDeGente.Domain.Entities.Customers;
+using Rhein.TicoDeGente.Repository.Utils;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
@@ -9,6 +10,11 @@ public class CustomerMapping : IEntityTypeConfiguration<Customer>
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
         builder.HasKey(c => c.Id);
+
+        //builder.Property(c => c.Id)
+        //    .HasConversion<UlidToStringConverter>()
+        //    .HasConversion<UlidToBytesConverter>();
+
 
         builder.HasMany(c => c.Orders)
             .WithOne(o => o.Customer)

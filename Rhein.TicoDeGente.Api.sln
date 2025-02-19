@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1-Data", "4.1-Data", "{AE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhein.TicoDeGente.Repository", "Rhein.TicoDeGente.Repository\Rhein.TicoDeGente.Repository.csproj", "{DBFFF7EC-0168-4DFF-973E-F521AFEA0393}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhein.TicoDeGente.Presentation", "Rhein.TicoDeGente.Presentation\Rhein.TicoDeGente.Presentation.csproj", "{C10213A3-108B-4188-9C63-C8A64BE31516}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{DBFFF7EC-0168-4DFF-973E-F521AFEA0393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBFFF7EC-0168-4DFF-973E-F521AFEA0393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBFFF7EC-0168-4DFF-973E-F521AFEA0393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10213A3-108B-4188-9C63-C8A64BE31516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10213A3-108B-4188-9C63-C8A64BE31516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10213A3-108B-4188-9C63-C8A64BE31516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10213A3-108B-4188-9C63-C8A64BE31516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{074B94A9-B4A3-4795-86C9-8136C9C02B83} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{AEF71CF8-FFDC-4202-A94A-524967367CD9} = {06DB8D1B-9649-4F4E-A78F-0D7C274C4AC1}
 		{DBFFF7EC-0168-4DFF-973E-F521AFEA0393} = {AEF71CF8-FFDC-4202-A94A-524967367CD9}
+		{C10213A3-108B-4188-9C63-C8A64BE31516} = {FC75C89E-8396-4C3F-A28E-869D09DB7A82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35CCFFD2-A30F-4B94-A5E8-C2E3DD9B86DC}

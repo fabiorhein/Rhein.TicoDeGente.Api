@@ -1,0 +1,6 @@
+@Rhein.TicoDeGente.Presentation_HostAddress = http://localhost:5016
+
+GET {{Rhein.TicoDeGente.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

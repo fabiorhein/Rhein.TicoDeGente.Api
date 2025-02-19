@@ -2,12 +2,12 @@
 
 public class EntityBase
 {
-    private Ulid _id;
-    public Ulid Id {
+    private Guid _id;
+    public Guid Id {
         get {
-            if (_id == Ulid.Empty)
+            if (_id == Guid.Empty)
             {
-                _id = Ulid.NewUlid();
+                _id = Guid.NewGuid();
             }
             return _id;
         }

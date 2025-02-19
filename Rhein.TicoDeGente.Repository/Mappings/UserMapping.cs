@@ -1,20 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Rhein.TicoDeGente.Domain.Entities.Products;
+using Rhein.TicoDeGente.Domain.Entities.Identities;
 using Rhein.TicoDeGente.Repository.Utils;
 
 namespace Rhein.TicoDeGente.Repository.Mappings;
 
-public class CategoryMapping : IEntityTypeConfiguration<Category>
+class UserMapping : IEntityTypeConfiguration<User>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(c => c.Id);
+        builder.HasKey(u => u.Id);
 
         //builder.Property(c => c.Id)
         //    .HasConversion<UlidToStringConverter>()
         //    .HasConversion<UlidToBytesConverter>();
 
-        builder.HasIndex(c => c.Name).IsUnique();
+        builder.HasMany(u => u.UserRoles)
+            .WithOne(ur => ur.User)
+            .HasForeignKey(ur => ur.UserId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace Rhein.TicoDeGente.Repository.Data;
 
@@ -7,8 +8,16 @@ public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContex
 {
     public DatabaseContext CreateDbContext(string[] args)
     {
+        var configuration = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json", true, true).Build();
+
         var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-        optionsBuilder.UseSqlite("Filename=TicoDeGente.db");
-        return new DatabaseContext(optionsBuilder.Options);
+
+        optionsBuilder.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+
+        var context = new DatabaseContext(optionsBuilder.Options);
+
+        return context;
     }
 }
