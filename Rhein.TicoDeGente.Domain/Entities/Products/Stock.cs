@@ -1,9 +1,11 @@
-﻿namespace Rhein.TicoDeGente.Domain.Entities.Products;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
 
-public class Stock
+namespace Rhein.TicoDeGente.Domain.Entities.Products;
+
+public class Stock : EntityBase
 {
-    public Ulid Id { get; set; }
     public Product Product { get; set; }
+    public Guid ProductId { get; set; }
     public int Quantity { get; set; }
     public int ReservedQuantity { get; set; }
 }

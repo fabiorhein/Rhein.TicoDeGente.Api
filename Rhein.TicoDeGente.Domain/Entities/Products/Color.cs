@@ -1,6 +1,8 @@
-﻿namespace Rhein.TicoDeGente.Domain.Entities.Products;
+﻿using Rhein.TicoDeGente.Domain.Entities.Base;
 
-public class Color
+namespace Rhein.TicoDeGente.Domain.Entities.Products;
+
+public class Color : EntityBase
 {
     public string ColorName { get; set; }
 }
