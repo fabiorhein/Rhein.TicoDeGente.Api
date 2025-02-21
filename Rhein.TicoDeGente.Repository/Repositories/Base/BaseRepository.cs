@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Rhein.TicoDeGente.Domain.Entities.Base;
 using Rhein.TicoDeGente.Repository.Repositories.IRepositories;
 using System.Data;
+using System.Linq.Expressions;
 
 namespace Rhein.TicoDeGente.Repository.Repositories.Base;
 
@@ -14,59 +16,87 @@ public class BaseRepository<T> : IRepository<T> where T : EntityBase
         Uow = uow;
     }
 
-    public virtual void Delete(T entity)
+    public virtual async Task<T> GetByIdAsync(Guid id, Func<IQueryable<T>, IIncludableQueryable<T, object>> includeFunc = null)
     {
-       Uow.Context.Set<T>().Remove(entity);
-       Uow.Context.SaveChanges();
+        IQueryable<T> query = Uow.GetContext().Set<T>().AsNoTracking();
+        if (includeFunc != null)
+        {
+            query = includeFunc(query);
+        }
+        return await query.FirstOrDefaultAsync(o => o.Id == id);
     }
 
-    public virtual async void DeleteAsync(T entity)
+    public virtual async Task<IEnumerable<T>> GetAllAsync()
     {
-        Uow.Context.Set<T>().Remove(entity);
-        await Uow.Context.SaveChangesAsync();
+        return await Uow.GetContext().Set<T>().AsNoTracking().ToListAsync();
     }
 
-    public virtual void DeleteById(Guid id)
+
+    public virtual async Task<IEnumerable<T>> GetPaginatedAsync(int page, int pageSize)
     {
-        var obj = Activator.CreateInstance<T>();
-        obj.Id = id;
-        Uow.Context.Set<T>().Remove(obj);
-        Uow.Context.SaveChanges();
+        return await Uow.GetContext().Set<T>().AsNoTracking().Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
     }
 
-    public virtual void DeleteRange(IEnumerable<T> entities)
+    public virtual async Task<IQueryable<T>> FindAsync(
+        Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> includeFunc = null)
     {
-       Uow.Context.Set<T>().RemoveRange(entities);
-       Uow.Context.SaveChanges();
+        IQueryable<T> query = Uow.GetContext().Set<T>().AsNoTracking().Where(predicate);
+
+        if (includeFunc != null)
+        {
+            query = includeFunc(query);
+        }
+
+        if (orderBy != null)
+        {
+            query = orderBy(query);
+        }
+
+        return query;
     }
 
-    public virtual IEnumerable<T> GetAll()
+    public virtual async Task<int> CountAsync(Expression<Func<T, bool>> predicate = null)
     {
-        return Uow.Context.Set<T>().ToList();
+        return predicate == null 
+            ? await Uow.GetContext().Set<T>().CountAsync() 
+            : await Uow.GetContext().Set<T>().CountAsync(predicate);
     }
 
-    public virtual T GetById(Guid id)
+    public virtual async Task<T> InsertAsync(T entity)
     {
-        return Uow.Context.Set<T>().FirstOrDefault(o => o.Id == id);
-    }
-
-    public virtual async Task<T> GetByIdAsync(Guid id)
-    {
-        return await Uow.Context.Set<T>().FirstOrDefaultAsync(o => o.Id == id);
-    }
-
-    public virtual T Save(T entity)
-    {
-        Uow.Context.Set<T>().Add(entity);
-        Uow.Context.SaveChanges();
+        await Uow.GetContext().Set<T>().AddAsync(entity);
+        await Uow.SaveChangesAsync();
         return entity;
     }
 
-    public virtual async Task<T> SaveAsync(T entity)
+    public virtual async Task<T> UpdateAsync(T entity)
     {
-        Uow.Context.Set<T>().Add(entity);
-        await Uow.Context.SaveChangesAsync();
+        Uow.GetContext().Set<T>().Update(entity); 
+        await Uow.SaveChangesAsync();
         return entity;
+    }
+
+    public virtual async Task DeleteAsync(T entity)
+    {
+        Uow.GetContext().Set<T>().Remove(entity);
+        await Uow.SaveChangesAsync(); 
+    }
+
+    public virtual async Task DeleteByIdAsync(Guid id)
+    {
+        var entity = await Uow.GetContext().Set<T>().FindAsync(id); 
+        if (entity != null)
+        {
+            Uow.GetContext().Set<T>().Remove(entity);
+            await Uow.SaveChangesAsync();
+        }
+    }
+
+    public virtual async Task DeleteRangeAsync(IEnumerable<T> entities)
+    {
+        Uow.GetContext().Set<T>().RemoveRange(entities);
+        await Uow.SaveChangesAsync();
     }
 
     public async ValueTask DisposeAsync()
